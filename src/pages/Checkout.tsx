@@ -15,6 +15,8 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
   const [isCartCheckout, setIsCartCheckout] = useState(false);
   const [quantity, setQuantity] = useState(1); // Only for single product
   const [doubt, setDoubt] = useState('');
+  const [customerPhone, setCustomerPhone] = useState('');
+  const [customerLocation, setCustomerLocation] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -42,8 +44,16 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
   }, []);
 
   const handlePlaceOrder = () => {
+    if (!customerPhone.trim() || !customerLocation.trim()) {
+      alert("Please enter your phone number and delivery location.");
+      return;
+    }
+
     const phoneNumber = "917845890485";
     let message = `*New Order Request*%0A%0A`;
+    message += `*Customer Details:*%0A`;
+    message += `Phone: ${customerPhone}%0A`;
+    message += `Location: ${customerLocation}%0A%0A`;
 
     if (isCartCheckout) {
       message += `*Items in Cart:*%0A`;
@@ -178,6 +188,30 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
                   </div>
                 )}
 
+                {/* Customer Details */}
+                <div className="space-y-4">
+                  <label className="block text-xs font-bold text-primary uppercase tracking-widest mb-2 ml-1">Delivery Details</label>
+                  <div>
+                    <input 
+                      type="tel" 
+                      value={customerPhone}
+                      onChange={(e) => setCustomerPhone(e.target.value)}
+                      placeholder="Phone Number *"
+                      className="w-full px-5 py-3.5 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm mb-3"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <textarea 
+                      value={customerLocation}
+                      onChange={(e) => setCustomerLocation(e.target.value)}
+                      placeholder="Delivery Address / Location *"
+                      className="w-full px-5 py-3.5 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all min-h-[80px] text-sm"
+                      required
+                    />
+                  </div>
+                </div>
+
                 {/* Doubts/Notes */}
                 <div>
                   <label className="block text-xs font-bold text-primary uppercase tracking-widest mb-3 ml-1">Any Doubts or Special Requests?</label>
@@ -185,7 +219,7 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
                     value={doubt}
                     onChange={(e) => setDoubt(e.target.value)}
                     placeholder="Enter your questions or notes here..."
-                    className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all min-h-[120px] text-sm"
+                    className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all min-h-[100px] text-sm"
                   />
                 </div>
 
