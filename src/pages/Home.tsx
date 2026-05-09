@@ -129,7 +129,7 @@ export default function Home({ onNavigate }: HomeProps) {
       <Navbar onNavigate={onNavigate} currentPage="home" />
 
       {/* Hero Section - Dynamic Slider */}
-      <section className="relative h-[65vh] md:h-[75vh] w-full max-w-full flex items-center justify-center overflow-hidden select-none mt-0 pt-0 bg-gray-100">
+      <section className="relative w-full aspect-square sm:aspect-[4/3] md:aspect-auto md:h-[75vh] flex items-center justify-center overflow-hidden select-none mt-0 pt-0 bg-gray-100">
         <AnimatePresence mode="wait">
           {banners.length > 0 ? (
             <motion.div
@@ -146,12 +146,14 @@ export default function Home({ onNavigate }: HomeProps) {
                   animate={{ scale: 1 }}
                   transition={{ duration: 6, ease: "easeOut" }}
                   src={getImageUrl(banners[currentBannerIndex].image)} 
-                  alt={banners[currentBannerIndex].title} 
+                  alt={banners[currentBannerIndex].title || 'Yuvana Offer'} 
                   className="w-full h-full object-cover object-center pointer-events-none block"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-black/20" />
-                <div className="absolute inset-0 bg-gradient-to-r from-beige/90 via-beige/40 to-transparent pointer-events-none left-0 right-0" />
+                {banners[currentBannerIndex].title && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-beige/90 via-beige/40 to-transparent pointer-events-none left-0 right-0" />
+                )}
               </div>
 
               <div className="relative z-10 w-full h-full max-w-[1200px] mx-auto px-4 md:px-10 flex items-center">
@@ -159,26 +161,30 @@ export default function Home({ onNavigate }: HomeProps) {
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
-                  className="max-w-[600px] flex flex-col gap-4 md:gap-6"
+                  className="max-w-[85%] md:max-w-[600px] flex flex-col gap-4 md:gap-6"
                 >
-                  <div>
-                    <span className="text-[10px] md:text-sm font-bold tracking-[0.3em] text-secondary uppercase mb-2 block">
-                      Yuvana Premium
-                    </span>
-                    <h1 className="text-3xl md:text-6xl font-serif text-primary leading-tight">
-                      {language === 'ta' && banners[currentBannerIndex].title_ta ? banners[currentBannerIndex].title_ta : banners[currentBannerIndex].title}
-                    </h1>
-                  </div>
+                  {banners[currentBannerIndex].title && (
+                    <div>
+                      <span className="text-[10px] md:text-sm font-bold tracking-[0.3em] text-secondary uppercase mb-2 block">
+                        Yuvana Premium
+                      </span>
+                      <h1 className="text-3xl md:text-6xl font-serif text-primary leading-tight shadow-sm shadow-white/10">
+                        {language === 'ta' && banners[currentBannerIndex].title_ta ? banners[currentBannerIndex].title_ta : banners[currentBannerIndex].title}
+                      </h1>
+                    </div>
+                  )}
                   
-                  <p className="text-sm md:text-lg text-primary/80 font-light leading-relaxed">
-                    {language === 'ta' && banners[currentBannerIndex].subtitle_ta ? banners[currentBannerIndex].subtitle_ta : banners[currentBannerIndex].subtitle}
-                  </p>
+                  {banners[currentBannerIndex].subtitle && (
+                    <p className="text-sm md:text-lg text-primary/90 font-medium md:font-light leading-relaxed bg-white/30 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-2 md:p-0 rounded-lg inline-block w-fit">
+                      {language === 'ta' && banners[currentBannerIndex].subtitle_ta ? banners[currentBannerIndex].subtitle_ta : banners[currentBannerIndex].subtitle}
+                    </p>
+                  )}
 
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => onNavigate(banners[currentBannerIndex].link || 'products')}
-                    className="w-fit px-8 py-3.5 md:py-4 bg-primary text-beige rounded-2xl font-bold flex items-center gap-3 hover:bg-primary/90 transition-all shadow-xl shadow-primary/20"
+                    className={`w-fit px-6 md:px-8 py-3.5 md:py-4 bg-primary text-beige rounded-2xl font-bold flex items-center gap-2 md:gap-3 hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 text-xs md:text-base ${!banners[currentBannerIndex].title && !banners[currentBannerIndex].subtitle ? 'absolute bottom-8 left-4 md:static' : ''}`}
                   >
                     Explore Offer
                     <ArrowRight className="w-4 h-4" />
@@ -227,11 +233,11 @@ export default function Home({ onNavigate }: HomeProps) {
                 />
               ))}
             </div>
-            <button onClick={prevBanner} className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-primary border border-white/30 hover:bg-white hover:shadow-xl transition-all">
-              <ChevronLeft className="w-6 h-6" />
+            <button onClick={prevBanner} className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/30 backdrop-blur-md text-primary border border-white/50 hover:bg-white hover:shadow-xl transition-all">
+              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
             </button>
-            <button onClick={nextBanner} className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-primary border border-white/30 hover:bg-white hover:shadow-xl transition-all">
-              <ChevronRight className="w-6 h-6" />
+            <button onClick={nextBanner} className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/30 backdrop-blur-md text-primary border border-white/50 hover:bg-white hover:shadow-xl transition-all">
+              <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
             </button>
           </>
         )}
