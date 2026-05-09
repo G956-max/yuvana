@@ -186,7 +186,7 @@ export default function ProductPage({ onNavigate }: ProductPageProps) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           <AnimatePresence mode="popLayout">
             {filteredProducts.map((product) => (
               <motion.div
@@ -199,11 +199,11 @@ export default function ProductPage({ onNavigate }: ProductPageProps) {
                 onClick={() => onNavigate(`product/${product.id}`)}
                 className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group border border-beige-dark/30 cursor-pointer"
               >
-                <div className="relative aspect-[4/5] overflow-hidden bg-beige">
+                <div className="relative aspect-square overflow-hidden bg-white">
                   <img 
                     src={getImageUrl(product.image)} 
                     alt={language === 'ta' && product.name_ta ? product.name_ta : (t.products[product.nameKey as keyof typeof t.products] || product.nameKey)} 
-                    className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute top-3 left-3 px-2 py-1 bg-white/90 backdrop-blur-sm rounded-lg flex items-center gap-1 shadow-sm">

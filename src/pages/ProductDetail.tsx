@@ -355,7 +355,7 @@ export default function ProductDetail({ id, onNavigate }: ProductDetailProps) {
         {/* Related Products */}
         <div className="border-t border-gray-200 pt-16 mb-16">
           <h2 className="text-3xl font-serif text-primary mb-8 text-center">{t.products.youMightAlsoLike}</h2>
-          <div className="flex overflow-x-auto pb-8 -mx-6 px-6 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 snap-x snap-mandatory hide-scrollbar">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 min-w-0">
             {relatedProducts.map((product) => (
               <motion.div
                 key={product.id}
@@ -364,13 +364,13 @@ export default function ProductDetail({ id, onNavigate }: ProductDetailProps) {
                   onNavigate(`product/${product.id}`);
                   window.scrollTo(0, 0);
                 }}
-                className="min-w-[280px] sm:min-w-0 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all group border border-gray-100 cursor-pointer snap-start flex-shrink-0"
+                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all group border border-gray-100 cursor-pointer"
               >
-                <div className="aspect-[4/5] overflow-hidden bg-beige relative">
+                <div className="aspect-square overflow-hidden bg-white relative">
                     <img 
                       src={getImageUrl(product.image)} 
                       alt={t.products[product.nameKey as keyof typeof t.products] || product.nameKey} 
-                      className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       referrerPolicy="no-referrer"
                     />
                 </div>
