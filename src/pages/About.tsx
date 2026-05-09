@@ -200,13 +200,13 @@ export default function About({ onNavigate }: AboutProps) {
               whileHover={{ scale: 1.02 }}
               className="aspect-square rounded-3xl overflow-hidden shadow-lg"
             >
-              <img src="https://images.unsplash.com/photo-1596431940984-7e795c65fbcd?auto=format&fit=crop&q=80&w=800" alt="Herbs" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=800" alt="Herbs" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </motion.div>
             <motion.div 
               whileHover={{ scale: 1.02 }}
               className="aspect-square rounded-3xl overflow-hidden shadow-lg"
             >
-              <img src="https://images.unsplash.com/photo-1608286022629-cda998bf1b30?auto=format&fit=crop&q=80&w=800" alt="Production" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=800" alt="Production" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </motion.div>
             <motion.div 
               whileHover={{ scale: 1.02 }}
