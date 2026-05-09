@@ -19,6 +19,9 @@ interface Product {
   category_name?: string;
   nameKey?: string;
   name?: string;
+  name_ta?: string;
+  description?: string;
+  description_ta?: string;
   price: number;
   image: string;
 }
@@ -65,8 +68,17 @@ export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuPr
         getDocs(collection(db, 'products')),
         getDocs(query(collection(db, 'categories'), orderBy('name')))
       ]);
-      setProducts(prodSnap.docs.map(doc => ({ id: doc.id, ...(doc.data() as any) })) as Product[]);
-      setCategories(catSnap.docs.map(doc => ({ id: doc.id, ...(doc.data() as any) })) as Category[]);
+      const cats = catSnap.docs.map(doc => ({ id: doc.id, ...(doc.data() as any) })) as Category[];
+      setCategories(cats);
+      setProducts(prodSnap.docs.map(doc => {
+        const data = doc.data() as any;
+        const cat = cats.find(c => c.id === data.category);
+        return { 
+          id: doc.id, 
+          ...data,
+          category_name: cat ? cat.name : ''
+        };
+      }) as Product[]);
     } catch (error) {
       console.error('Error fetching search data from Firestore:', error);
     } finally {
@@ -115,10 +127,18 @@ export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuPr
   // Filter products based on query
   const filteredProducts = products.filter(p => {
     const translatedName = (t.products?.[p.nameKey as keyof typeof t.products] || p.nameKey || p.name || '').toLowerCase();
+    const translatedNameTa = (p.name_ta || '').toLowerCase();
     const translatedCatName = (p.category_name || '').toLowerCase();
+    const desc = (p.description || '').toLowerCase();
+    const descTa = (p.description_ta || '').toLowerCase();
+    
     const searchLower = query.toLowerCase();
     
-    return translatedName.includes(searchLower) || translatedCatName.includes(searchLower);
+    return translatedName.includes(searchLower) || 
+           translatedNameTa.includes(searchLower) ||
+           translatedCatName.includes(searchLower) ||
+           desc.includes(searchLower) ||
+           descTa.includes(searchLower);
   });
 
   return (
