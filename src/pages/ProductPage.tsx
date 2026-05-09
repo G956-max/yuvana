@@ -100,7 +100,8 @@ export default function ProductPage({ onNavigate }: ProductPageProps) {
       
       const matchesCategory = selectedCatId === 'all' || productCatId === selectedCatId;
       
-      const productName = (language === 'ta' && product.name_ta ? product.name_ta : (t.products[product.nameKey as keyof typeof t.products] || product.nameKey || '')).toLowerCase();
+      const defaultName = t.products[product.nameKey as keyof typeof t.products] || product.nameKey || product.name || '';
+      const productName = (language === 'ta' && product.name_ta ? product.name_ta : defaultName).toLowerCase();
       const productDescKey = `desc_${product.nameKey}` as keyof typeof t.products;
       const productDesc = (language === 'ta' && product.description_ta ? product.description_ta : (t.products[productDescKey] || product.description || '')).toLowerCase();
       

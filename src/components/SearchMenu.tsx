@@ -17,7 +17,8 @@ interface Product {
   id: string;
   category: string;
   category_name?: string;
-  nameKey: string;
+  nameKey?: string;
+  name?: string;
   price: number;
   image: string;
 }
@@ -113,7 +114,7 @@ export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuPr
 
   // Filter products based on query
   const filteredProducts = products.filter(p => {
-    const translatedName = (t.products?.[p.nameKey as keyof typeof t.products] || p.nameKey || '').toLowerCase();
+    const translatedName = (t.products?.[p.nameKey as keyof typeof t.products] || p.nameKey || p.name || '').toLowerCase();
     const translatedCatName = (p.category_name || '').toLowerCase();
     const searchLower = query.toLowerCase();
     
@@ -205,7 +206,7 @@ export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuPr
                             <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-50 mb-3 relative">
                               <img 
                                 src={getImageUrl(product.image)} 
-                                alt={t.products[product.nameKey as keyof typeof t.products] || product.nameKey}
+                                alt={t.products[product.nameKey as keyof typeof t.products] || product.nameKey || product.name}
                                 className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                               />
                               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
@@ -214,7 +215,7 @@ export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuPr
                               {product.category_name}
                             </span>
                             <h4 className="font-bold text-primary text-sm line-clamp-1 group-hover:text-secondary transition-colors">
-                              {t.products[product.nameKey as keyof typeof t.products] || product.nameKey}
+                              {t.products[product.nameKey as keyof typeof t.products] || product.nameKey || product.name}
                             </h4>
                             <p className="text-primary/70 text-sm mt-1">
                               ₹{parseFloat((product.price || 0).toString()).toFixed(2)}
@@ -330,14 +331,14 @@ export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuPr
                                 className="flex items-center gap-4 p-3 rounded-2xl hover:bg-gray-50 border border-transparent hover:border-gray-100 cursor-pointer transition-all group lg:min-h-24"
                               >
                                 <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 shrink-0 border border-gray-100">
-                                  <img src={getImageUrl(product.image)} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" alt={t.products[product.nameKey as keyof typeof t.products] || product.nameKey} />
+                                  <img src={getImageUrl(product.image)} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" alt={t.products[product.nameKey as keyof typeof t.products] || product.nameKey || product.name} />
                                 </div>
                                 <div className="flex-1">
                                   <span className="text-[9px] uppercase font-bold text-secondary tracking-widest mb-1 block">
                                     {product.category_name}
                                   </span>
                                   <h4 className="font-bold text-primary text-sm line-clamp-1 group-hover:text-secondary transition-colors">
-                                    {t.products[product.nameKey as keyof typeof t.products] || product.nameKey}
+                                    {t.products[product.nameKey as keyof typeof t.products] || product.nameKey || product.name}
                                   </h4>
                                   <p className="font-bold text-primary/80 text-xs mt-1">
                                     ₹{parseFloat((product.price || 0).toString()).toFixed(2)}
