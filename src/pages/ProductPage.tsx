@@ -128,13 +128,13 @@ export default function ProductPage({ onNavigate }: ProductPageProps) {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className="relative flex flex-col items-center flex-shrink-0 group m-0 p-0 transition-transform hover:-translate-y-1 min-w-[70px]"
+                  className="relative flex flex-col items-center flex-shrink-0 group m-0 p-2 transition-transform hover:-translate-y-1 min-w-[80px]"
                 >
-                  <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center m-0 p-0 overflow-hidden">
+                  <div className={`w-14 h-14 md:w-16 md:h-16 flex items-center justify-center m-0 p-2.5 overflow-hidden rounded-full border-2 transition-all duration-300 bg-white ${String(selectedCategory) === String(cat.id) ? 'border-[#1A3626] shadow-md scale-105' : 'border-gray-300 group-hover:border-[#1A3626] group-hover:shadow-sm'}`}>
                     <img 
                       src={getImageUrl(cat.image)} 
                       alt={cat.name} 
-                      className="w-full h-full object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-105" 
+                      className="w-full h-full object-contain mix-blend-multiply filter drop-shadow-sm transition-transform duration-300 group-hover:scale-110" 
                       referrerPolicy="no-referrer"
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
@@ -142,12 +142,9 @@ export default function ProductPage({ onNavigate }: ProductPageProps) {
                       }}
                     />
                   </div>
-                  <span className={`text-[12px] md:text-sm whitespace-nowrap transition-colors mt-1 ${String(selectedCategory) === String(cat.id) ? 'text-secondary font-bold' : 'text-gray-800 font-medium group-hover:text-secondary'}`}>
+                  <span className={`text-[10px] md:text-xs text-center whitespace-nowrap transition-colors mt-2 ${String(selectedCategory) === String(cat.id) ? 'text-[#1A3626] font-bold' : 'text-gray-600 font-medium group-hover:text-[#1A3626]'}`}>
                     {cat.id === 'all' ? t.products.allProducts : (language === 'ta' && cat.name_ta ? cat.name_ta : (t.categories[cat.name.toLowerCase() as keyof typeof t.categories] || cat.name))}
                   </span>
-                  {String(selectedCategory) === String(cat.id) && (
-                    <motion.div layoutId="activeCatLine" className="h-[3px] w-full bg-secondary rounded-t-md absolute bottom-0" />
-                  )}
                 </button>
               ))}
             </div>
