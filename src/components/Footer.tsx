@@ -9,7 +9,7 @@ export default function Footer({ onNavigate }: FooterProps) {
 
   return (
     <footer className="bg-primary text-beige py-16 md:py-20 w-full overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-10 min-w-0">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-10 min-w-0">
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <div className="text-2xl md:text-3xl font-serif tracking-[0.3em] font-bold mb-8 md:mb-10 uppercase">
             {t.footer.brand}

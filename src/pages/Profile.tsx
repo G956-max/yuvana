@@ -60,7 +60,7 @@ export default function Profile({ onNavigate }: ProfileProps) {
     <div className="min-h-screen bg-[#f5f5f5] selection:bg-secondary/30 pt-[70px]">
       <Navbar onNavigate={onNavigate} currentPage="profile" />
 
-      <div className="max-w-[1200px] mx-auto px-6 py-10">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-6 md:py-10">
         <div className="flex flex-col lg:flex-row gap-8">
           
           {/* Left Sidebar */}
@@ -127,7 +127,7 @@ export default function Profile({ onNavigate }: ProfileProps) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 min-h-[600px]"
+              className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 md:p-8 min-h-[600px]"
             >
               
               {/* Profile Tab */}

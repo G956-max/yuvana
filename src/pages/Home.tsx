@@ -154,7 +154,7 @@ export default function Home({ onNavigate }: HomeProps) {
                 <div className="absolute inset-0 bg-gradient-to-r from-beige/90 via-beige/40 to-transparent pointer-events-none left-0 right-0" />
               </div>
 
-              <div className="relative z-10 w-full h-full max-w-[1200px] mx-auto px-10 flex items-center">
+              <div className="relative z-10 w-full h-full max-w-[1200px] mx-auto px-4 md:px-10 flex items-center">
                 <motion.div 
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -201,7 +201,7 @@ export default function Home({ onNavigate }: HomeProps) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-beige/80 via-beige/30 to-transparent pointer-events-none left-0 right-0" />
               </div>
-              <div className="relative z-10 w-full h-full max-w-[1200px] mx-auto px-10 flex items-center">
+              <div className="relative z-10 w-full h-full max-w-[1200px] mx-auto px-4 md:px-10 flex items-center">
                 <div className="max-w-[500px]">
                   <h1 className="text-4xl md:text-6xl font-serif text-primary leading-tight mb-6 italic">
                     {t.hero.title1} {t.hero.title2}
@@ -239,7 +239,7 @@ export default function Home({ onNavigate }: HomeProps) {
 
       {/* Categories Section - Full Width, Grid Layout, Aspect Ratio */}
       <section className="py-[60px] md:py-[80px] bg-beige-dark/30 w-full overflow-hidden">
-        <div className="max-w-[1200px] mx-auto px-10 min-w-0">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10 min-w-0">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-serif text-primary mb-4">{t.products.ourCollection}</h2>
             <div className="w-16 h-px bg-secondary mx-auto mb-4" />
@@ -281,7 +281,7 @@ export default function Home({ onNavigate }: HomeProps) {
 
       {/* Products Section - Consistent Spacing */}
       <section className="py-[60px] md:py-[80px] bg-white w-full overflow-hidden">
-        <div className="max-w-[1200px] mx-auto px-10 min-w-0">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10 min-w-0">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
             <div>
               <h2 className="text-3xl md:text-4xl font-serif text-primary mb-4">{t.products.bestsellers}</h2>
@@ -398,7 +398,7 @@ export default function Home({ onNavigate }: HomeProps) {
 
       {/* Feature Section - Consistent Spacing */}
       <section className="py-[60px] md:py-[80px] bg-beige-dark/20 border-y border-beige-dark/50 w-full overflow-hidden">
-        <div className="max-w-[1200px] mx-auto px-10 min-w-0">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10 min-w-0">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 min-w-0">
             {features.map((feature, idx) => (
               <div key={idx} className="flex flex-col items-center text-center group">
@@ -425,7 +425,7 @@ export default function Home({ onNavigate }: HomeProps) {
           <div className="absolute inset-0 bg-primary/40 backdrop-blur-[1px] left-0 right-0" />
         </div>
 
-        <div className="relative z-10 w-full max-w-4xl mx-auto px-10 text-center min-w-0">
+        <div className="relative z-10 w-full max-w-4xl mx-auto px-4 md:px-10 text-center min-w-0">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}

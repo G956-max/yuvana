@@ -158,7 +158,7 @@ export default function ProductDetail({ id, onNavigate }: ProductDetailProps) {
     <div className="min-h-screen bg-[#f5f5f5] selection:bg-secondary/30 pt-[70px]">
       <Navbar onNavigate={onNavigate} currentPage={`product/${id}`} />
 
-      <main className="max-w-[1200px] mx-auto px-6 py-10">
+      <main className="max-w-[1200px] mx-auto px-4 md:px-6 py-6 md:py-10">
         {/* Breadcrumb */}
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] sm:text-xs font-semibold text-secondary/60 uppercase tracking-wider mb-6 sm:mb-8">
           <button onClick={() => onNavigate('home')} className="hover:text-primary transition-colors whitespace-nowrap">{t.nav.home}</button>
@@ -207,7 +207,7 @@ export default function ProductDetail({ id, onNavigate }: ProductDetailProps) {
               </button>
             </motion.div>
             
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {productData.images.map((img, idx) => (
                 <button
                   key={idx}

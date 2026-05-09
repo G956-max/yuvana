@@ -101,7 +101,7 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
     <div className="min-h-screen bg-[#f5f5f5] selection:bg-secondary/30 pt-[70px]">
       <Navbar onNavigate={onNavigate} currentPage="checkout" />
 
-      <main className="max-w-[800px] mx-auto px-6 py-10">
+      <main className="max-w-[800px] mx-auto px-4 md:px-6 py-6 md:py-10">
         <button 
           onClick={() => onNavigate(isCartCheckout ? 'cart' : `product/${product.id}`)}
           className="flex items-center gap-2 text-secondary hover:text-primary transition-colors mb-8 group"

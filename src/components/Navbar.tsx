@@ -34,7 +34,7 @@ export default function Navbar({ onNavigate, currentPage }: NavbarProps) {
           : { backgroundColor: '#ffffff' }
         }
       >
-      <div className="w-full max-w-[1200px] mx-auto px-10 flex items-center justify-between relative h-full">
+      <div className="w-full max-w-[1200px] mx-auto px-4 md:px-10 flex items-center justify-between relative h-full">
         {/* Left: Logo */}
         <div 
           className="text-base md:text-xl font-serif tracking-[0.15em] md:tracking-[0.2em] text-primary font-bold whitespace-nowrap cursor-pointer transition-all hover:opacity-80"

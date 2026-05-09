@@ -34,7 +34,7 @@ export default function About({ onNavigate }: AboutProps) {
           <div className="absolute inset-0 bg-primary/40 backdrop-blur-[2px]" />
         </div>
         
-        <div className="relative z-10 text-center px-10">
+        <div className="relative z-10 text-center px-4 md:px-10">
           <motion.span 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export default function About({ onNavigate }: AboutProps) {
 
       {/* Who We Are */}
       <section className="py-20 bg-white">
-        <div className="max-w-[800px] mx-auto px-10 text-center">
+        <div className="max-w-[800px] mx-auto px-4 md:px-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +83,7 @@ export default function About({ onNavigate }: AboutProps) {
 
       {/* Mission & Vision */}
       <section className="py-20 bg-beige-dark/20">
-        <div className="max-w-[1200px] mx-auto px-10">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
@@ -120,7 +120,7 @@ export default function About({ onNavigate }: AboutProps) {
 
       {/* Why Choose Us */}
       <section className="py-20 bg-white">
-        <div className="max-w-[1200px] mx-auto px-10">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-serif text-primary mb-4">{t.about.values}</h2>
             <div className="w-16 h-px bg-secondary mx-auto" />
@@ -148,7 +148,7 @@ export default function About({ onNavigate }: AboutProps) {
 
       {/* Our Story */}
       <section className="py-20 bg-beige-dark/10">
-        <div className="max-w-[1200px] mx-auto px-10">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
@@ -188,7 +188,7 @@ export default function About({ onNavigate }: AboutProps) {
 
       {/* Image Grid */}
       <section className="py-20 bg-white">
-        <div className="max-w-[1200px] mx-auto px-10">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <motion.div 
               whileHover={{ scale: 1.02 }}
@@ -220,7 +220,7 @@ export default function About({ onNavigate }: AboutProps) {
 
       {/* Contact CTA */}
       <section className="py-20 bg-primary text-beige text-center">
-        <div className="max-w-[1200px] mx-auto px-10">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -234,7 +234,7 @@ export default function About({ onNavigate }: AboutProps) {
               href="https://wa.me/917845890485" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="px-10 py-4 bg-secondary text-white rounded-full font-bold hover:bg-secondary/90 transition-all flex items-center justify-center gap-3 mx-auto group w-fit"
+              className="px-4 md:px-10 py-4 bg-secondary text-white rounded-full font-bold hover:bg-secondary/90 transition-all flex items-center justify-center gap-3 mx-auto group w-fit"
             >
               <MessageCircle className="w-5 h-5" />
               {t.about.contactBtn}

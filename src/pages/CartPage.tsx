@@ -22,7 +22,7 @@ export default function CartPage({ onNavigate }: CartPageProps) {
     <div className="min-h-screen bg-[#f5f5f5] selection:bg-secondary/30 pt-[70px]">
       <Navbar onNavigate={onNavigate} currentPage="cart" />
 
-      <main className="max-w-[1200px] mx-auto px-6 py-10">
+      <main className="max-w-[1200px] mx-auto px-4 md:px-6 py-6 md:py-10">
         <h1 className="text-4xl font-serif text-primary mb-10">{t.cart.title}</h1>
 
         {cartItems.length === 0 ? (
