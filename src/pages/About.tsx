@@ -230,11 +230,16 @@ export default function About({ onNavigate }: AboutProps) {
             <p className="text-beige/70 font-light mb-10 max-w-lg mx-auto">
               {t.about.contactDesc}
             </p>
-            <button className="px-10 py-4 bg-secondary text-white rounded-full font-bold hover:bg-secondary/90 transition-all flex items-center gap-3 mx-auto group">
+            <a 
+              href="https://wa.me/917845890485" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-10 py-4 bg-secondary text-white rounded-full font-bold hover:bg-secondary/90 transition-all flex items-center justify-center gap-3 mx-auto group w-fit"
+            >
               <MessageCircle className="w-5 h-5" />
               {t.about.contactBtn}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
           </motion.div>
         </div>
       </section>
