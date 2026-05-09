@@ -126,19 +126,14 @@ export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuPr
 
   // Filter products based on query
   const filteredProducts = products.filter(p => {
-    const translatedName = (t.products?.[p.nameKey as keyof typeof t.products] || p.nameKey || p.name || '').toLowerCase();
-    const translatedNameTa = (p.name_ta || '').toLowerCase();
-    const translatedCatName = (p.category_name || '').toLowerCase();
-    const desc = String(p.description || '').toLowerCase();
-    const descTa = String(p.description_ta || '').toLowerCase();
+    const translatedName = String(t.products?.[p.nameKey as keyof typeof t.products] || p.nameKey || p.name || '').toLowerCase();
+    const translatedNameTa = String(p.name_ta || '').toLowerCase();
     
-    const searchLower = searchQuery.toLowerCase();
+    const searchLower = searchQuery.trim().toLowerCase();
+    if (!searchLower) return false;
     
     return translatedName.includes(searchLower) || 
-           translatedNameTa.includes(searchLower) ||
-           translatedCatName.includes(searchLower) ||
-           desc.includes(searchLower) ||
-           descTa.includes(searchLower);
+           translatedNameTa.includes(searchLower);
   });
 
   return (
