@@ -8,8 +8,9 @@ import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import axios from 'axios';
 import { getImageUrl } from '../utils/urlHelper';
-import { collection, getDocs, query, where, limit, orderBy } from 'firebase/firestore';
+import { collection, getDocs, query, limit } from 'firebase/firestore';
 import { db } from '../firebase';
+import { useAuth } from '../context/AuthContext';
 
 interface Category {
   id: string;
@@ -49,6 +50,15 @@ export default function Home({ onNavigate }: HomeProps) {
   const { t, language } = useLanguage();
   const { addToCart } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const { user } = useAuth();
+
+  const handleAuthAction = (action: () => void) => {
+    if (!user) {
+      onNavigate('login');
+      return;
+    }
+    action();
+  };
 
   const nextBanner = useCallback(() => {
     setCurrentBannerIndex((prev) => (prev + 1) % banners.length);
@@ -319,16 +329,18 @@ export default function Home({ onNavigate }: HomeProps) {
                     whileTap={{ scale: 0.9 }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (isInWishlist(product.id)) {
-                        removeFromWishlist(product.id);
-                      } else {
-                        addToWishlist({
-                          id: product.id,
-                          nameKey: product.nameKey,
-                          price: typeof product.price === 'string' ? product.price : `₹${product.price.toFixed(2)}`,
-                          image: product.image
-                        });
-                      }
+                      handleAuthAction(() => {
+                        if (isInWishlist(product.id)) {
+                          removeFromWishlist(product.id);
+                        } else {
+                          addToWishlist({
+                            id: product.id,
+                            nameKey: product.nameKey,
+                            price: typeof product.price === 'string' ? product.price : `₹${product.price.toFixed(2)}`,
+                            image: product.image
+                          });
+                        }
+                      });
                     }}
                     className="absolute top-3 right-3 w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
                   >
@@ -339,11 +351,13 @@ export default function Home({ onNavigate }: HomeProps) {
                     whileTap={{ scale: 0.9 }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      addToCart({
-                        id: product.id,
-                        nameKey: product.nameKey,
-                        price: typeof product.price === 'string' ? parseFloat(product.price.replace('₹', '').replace('$', '')) : product.price,
-                        image: product.image
+                      handleAuthAction(() => {
+                        addToCart({
+                          id: product.id,
+                          nameKey: product.nameKey,
+                          price: typeof product.price === 'string' ? parseFloat(product.price.replace('₹', '').replace('$', '')) : product.price,
+                          image: product.image
+                        });
                       });
                     }}
                     className="absolute bottom-3 right-3 w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
@@ -363,11 +377,13 @@ export default function Home({ onNavigate }: HomeProps) {
                 <button 
                   onClick={(e) => {
                     e.stopPropagation();
-                    addToCart({
-                      id: product.id,
-                      nameKey: product.nameKey,
-                      price: typeof product.price === 'string' ? parseFloat(product.price.replace('₹', '').replace('$', '')) : product.price,
-                      image: product.image
+                    handleAuthAction(() => {
+                      addToCart({
+                        id: product.id,
+                        nameKey: product.nameKey,
+                        price: typeof product.price === 'string' ? parseFloat(product.price.replace('₹', '').replace('$', '')) : product.price,
+                        image: product.image
+                      });
                     });
                   }}
                   className="w-full py-3 border border-beige-dark rounded-xl text-xs md:text-sm font-medium hover:bg-primary hover:text-white transition-all"
