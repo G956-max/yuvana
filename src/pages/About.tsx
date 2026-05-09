@@ -81,42 +81,7 @@ export default function About({ onNavigate }: AboutProps) {
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="py-20 bg-beige-dark/20">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-white p-10 rounded-[2rem] shadow-sm border border-beige-dark/50 hover:shadow-md transition-shadow"
-            >
-              <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary mb-6">
-                <Target className="w-8 h-8" />
-              </div>
-              <h3 className="text-2xl font-serif text-primary mb-4">{t.about.mission}</h3>
-              <p className="text-secondary font-light leading-relaxed">
-                {t.about.missionDesc}
-              </p>
-            </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-white p-10 rounded-[2rem] shadow-sm border border-beige-dark/50 hover:shadow-md transition-shadow"
-            >
-              <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary mb-6">
-                <Eye className="w-8 h-8" />
-              </div>
-              <h3 className="text-2xl font-serif text-primary mb-4">{t.about.vision}</h3>
-              <p className="text-secondary font-light leading-relaxed">
-                {t.about.visionDesc}
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* Why Choose Us */}
       <section className="py-20 bg-white">
@@ -146,73 +111,45 @@ export default function About({ onNavigate }: AboutProps) {
         </div>
       </section>
 
-      {/* Our Story */}
-      <section className="py-20 bg-beige-dark/10">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-10">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
+      {/* Massive Mission & Vision */}
+      <section className="py-24 md:py-32 bg-primary text-beige overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3 pointer-events-none" />
+        
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10 relative z-10">
+          <div className="flex flex-col gap-24">
+            {/* Vision */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="w-full lg:w-1/2 aspect-[4/3] rounded-[3rem] overflow-hidden shadow-xl"
+              className="flex flex-col items-center text-center gap-8 max-w-4xl mx-auto"
             >
-              <img 
-                src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&q=80&w=1200" 
-                alt="Ayurvedic preparation" 
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
+              <div className="w-20 h-20 bg-secondary/20 rounded-full flex items-center justify-center text-secondary">
+                <Eye className="w-10 h-10" />
+              </div>
+              <h2 className="text-4xl md:text-6xl font-serif text-white tracking-widest uppercase">{t.about.vision}</h2>
+              <p className="text-2xl md:text-4xl lg:text-5xl font-light leading-snug md:leading-tight italic text-beige/90">
+                "{t.about.visionDesc}"
+              </p>
             </motion.div>
-            <div className="w-full lg:w-1/2">
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-3xl md:text-4xl font-serif text-primary mb-6">{t.about.process}</h2>
-                <p className="text-secondary font-light leading-relaxed mb-6 text-lg">
-                  {t.about.processDesc}
-                </p>
-                <button 
-                  onClick={() => onNavigate('products')}
-                  className="mt-4 px-8 py-3.5 bg-primary text-beige rounded-full font-medium flex items-center gap-3 hover:bg-primary/90 transition-all shadow-lg"
-                >
-                  {t.hero.cta}
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Image Grid */}
-      <section className="py-20 bg-white">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="w-full h-px bg-beige/10" />
+
+            {/* Mission */}
             <motion.div 
-              whileHover={{ scale: 1.02 }}
-              className="md:col-span-2 aspect-[16/9] rounded-3xl overflow-hidden shadow-lg"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex flex-col items-center text-center gap-8 max-w-4xl mx-auto"
             >
-              <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&w=1200" alt="Nature" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-            </motion.div>
-            <motion.div 
-              whileHover={{ scale: 1.02 }}
-              className="aspect-square rounded-3xl overflow-hidden shadow-lg"
-            >
-              <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=800" alt="Herbs" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-            </motion.div>
-            <motion.div 
-              whileHover={{ scale: 1.02 }}
-              className="aspect-square rounded-3xl overflow-hidden shadow-lg"
-            >
-              <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=800" alt="Production" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-            </motion.div>
-            <motion.div 
-              whileHover={{ scale: 1.02 }}
-              className="md:col-span-2 aspect-[16/9] rounded-3xl overflow-hidden shadow-lg"
-            >
-              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1200" alt="Wellness" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <div className="w-20 h-20 bg-secondary/20 rounded-full flex items-center justify-center text-secondary">
+                <Target className="w-10 h-10" />
+              </div>
+              <h2 className="text-4xl md:text-6xl font-serif text-white tracking-widest uppercase">{t.about.mission}</h2>
+              <p className="text-2xl md:text-4xl lg:text-5xl font-light leading-snug md:leading-tight italic text-beige/90">
+                "{t.about.missionDesc}"
+              </p>
             </motion.div>
           </div>
         </div>
