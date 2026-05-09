@@ -165,19 +165,19 @@ export default function ProductPage({ onNavigate }: ProductPageProps) {
           </div>
         ) : (
           <>
-            <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-serif text-primary">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-3">
+          <h2 className="text-lg md:text-xl font-serif text-primary">
             {selectedCategory === 'all' 
               ? t.products.allProducts 
               : (language === 'ta' && categories.find(c => String(c.id) === String(selectedCategory))?.name_ta 
                   ? categories.find(c => String(c.id) === String(selectedCategory))?.name_ta 
                   : (categories.find(c => String(c.id) === String(selectedCategory))?.name || selectedCategory))
             }
-            <span className="ml-2 text-sm font-sans text-secondary font-normal">({filteredProducts.length} {t.products.items})</span>
+            <span className="ml-2 text-xs md:text-sm font-sans text-secondary font-normal">({filteredProducts.length} {t.products.items})</span>
           </h2>
-          <div className="flex items-center gap-2 text-sm text-secondary">
+          <div className="flex items-center gap-2 text-xs md:text-sm text-secondary">
             <span>{t.products.sortBy}:</span>
-            <select className="bg-transparent border-none focus:ring-0 font-bold text-primary cursor-pointer">
+            <select className="bg-transparent border-none focus:ring-0 font-bold text-primary cursor-pointer p-0">
               <option>{t.products.popularity}</option>
               <option>{t.products.priceLowHigh}</option>
               <option>{t.products.priceHighLow}</option>
@@ -231,12 +231,14 @@ export default function ProductPage({ onNavigate }: ProductPageProps) {
                     <Heart className={`w-4 h-4 ${isInWishlist(product.id) ? 'fill-red-500 text-red-500' : ''}`} />
                   </motion.button>
                 </div>
-                <div className="p-4">
-                  <h3 className="text-sm font-medium text-primary mb-1 line-clamp-1">{language === 'ta' && product.name_ta ? product.name_ta : (t.products[product.nameKey as keyof typeof t.products] || product.nameKey)}</h3>
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="text-lg font-bold text-primary">₹{Number(product.price).toFixed(2)}</span>
-                    <span className="text-xs text-secondary line-through">₹{(Number(product.price) * 1.2).toFixed(2)}</span>
-                    <span className="text-xs text-green-600 font-bold">20% off</span>
+                <div className="p-3 md:p-4 flex flex-col justify-between flex-1">
+                  <div>
+                    <h3 className="text-xs md:text-sm font-medium text-primary mb-1 line-clamp-2 md:line-clamp-1 min-h-[32px] md:min-h-0">{language === 'ta' && product.name_ta ? product.name_ta : (t.products[product.nameKey as keyof typeof t.products] || product.nameKey)}</h3>
+                    <div className="flex flex-wrap items-center gap-1 md:gap-2 mb-3 md:mb-4">
+                      <span className="text-sm md:text-lg font-bold text-primary">₹{Number(product.price).toFixed(2)}</span>
+                      <span className="text-[9px] md:text-xs text-secondary line-through">₹{(Number(product.price) * 1.2).toFixed(2)}</span>
+                      <span className="text-[9px] md:text-xs text-green-600 font-bold">20% off</span>
+                    </div>
                   </div>
                   <button 
                     onClick={(e) => {
@@ -248,7 +250,7 @@ export default function ProductPage({ onNavigate }: ProductPageProps) {
                         image: product.image
                       });
                     }}
-                    className="w-full py-2.5 bg-primary text-beige rounded-lg text-xs font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all active:scale-95"
+                    className="w-full py-2.5 bg-primary text-beige rounded-lg text-xs font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all active:scale-95 mt-auto"
                   >
                     <ShoppingBag className="w-4 h-4" />
                     {t.products.addToCart}
