@@ -44,12 +44,6 @@ export default function Footer({ onNavigate }: FooterProps) {
             <a href="#" className="hover:underline">
               {t.footer.terms}
             </a>
-            <button
-              onClick={() => onNavigate('login')}
-              className="hover:underline text-left opacity-80"
-            >
-              Admin Login
-            </button>
           </div>
         </div>
       </div>
