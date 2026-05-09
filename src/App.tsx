@@ -48,7 +48,7 @@ function AppContent() {
 
   const renderPage = () => {
     // Pages accessible without login
-    const isPublicPage = ['home', 'products', 'about', 'login', 'cart', 'profile', 'checkout'].includes(currentPage) || currentPage.startsWith('product/');
+    const isPublicPage = ['home', 'login'].includes(currentPage);
 
     if (!user && !isPublicPage) {
       return (
