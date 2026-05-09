@@ -43,7 +43,6 @@ export default function Profile({ onNavigate }: ProfileProps) {
 
   const menuItems = [
     { id: 'profile', icon: User, label: t.profile.myProfile },
-    { id: 'orders', icon: Package, label: t.profile.myOrders },
     { id: 'wishlist', icon: Heart, label: t.profile.wishlist },
     { id: 'settings', icon: Settings, label: t.profile.accountSettings },
   ];
@@ -204,46 +203,6 @@ export default function Profile({ onNavigate }: ProfileProps) {
                       <Edit2 className="w-4 h-4" />
                       {t.profile.editProfile}
                     </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Orders Tab */}
-              {activeTab === 'orders' && (
-                <div>
-                  <div className="mb-8">
-                    <h2 className="text-2xl font-serif text-primary mb-2">{t.profile.myOrders}</h2>
-                  </div>
-
-                  <div className="flex flex-col gap-4">
-                    {orders.map((order) => (
-                      <div key={order.id} className="flex flex-col sm:flex-row items-center gap-6 p-5 rounded-2xl border border-gray-100 hover:border-beige-dark transition-colors group cursor-pointer">
-                        <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 bg-gray-50">
-                          <img src={getImageUrl(order.img)} alt="Product" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
-                        </div>
-                        
-                        <div className="flex-1 min-w-0 text-center sm:text-left">
-                          <h4 className="text-primary font-medium truncate mb-1">{order.items}</h4>
-                          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 text-xs text-secondary/70">
-                            <span>{order.date}</span>
-                            <span className="w-1 h-1 rounded-full bg-gray-300"></span>
-                            <span className="font-medium text-primary">{order.total}</span>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-col items-center sm:items-end gap-3 shrink-0">
-                          <span className="text-xs font-medium text-secondary/50">{t.profile.orderId}: {order.id}</span>
-                          <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border flex items-center ${getStatusColor(order.status)}`}>
-                            {getStatusIcon(order.status)}
-                            {t.profile[order.status as keyof typeof t.profile]}
-                          </div>
-                        </div>
-
-                        <div className="hidden sm:flex w-10 h-10 rounded-full bg-gray-50 items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors shrink-0">
-                          <ChevronRight className="w-5 h-5" />
-                        </div>
-                      </div>
-                    ))}
                   </div>
                 </div>
               )}
