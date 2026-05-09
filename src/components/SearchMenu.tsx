@@ -34,7 +34,7 @@ interface Category {
 
 export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuProps) {
   const { t } = useLanguage();
-  const [query, setQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -57,7 +57,7 @@ export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuPr
         fetchData();
       }
     } else {
-      setQuery(''); // Reset when closing
+      setSearchQuery(''); // Reset when closing
     }
   }, [isOpen]);
 
@@ -97,21 +97,21 @@ export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuPr
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (query.trim()) {
-      saveRecentSearch(query);
+    if (searchQuery.trim()) {
+      saveRecentSearch(searchQuery);
       // The filteredProducts logic at the bottom of this component already updates the view natively.
       // We removed the 'onNavigate(products)' call to stay on this search menu.
     }
   };
 
   const handleProductClick = (id: string) => {
-    saveRecentSearch(query);
+    saveRecentSearch(searchQuery);
     onNavigate(`product/${id}`);
     onClose();
   };
 
   const handleQuickSearch = (term: string) => {
-    setQuery(term);
+    setSearchQuery(term);
     inputRef.current?.focus();
   };
 
@@ -129,10 +129,10 @@ export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuPr
     const translatedName = (t.products?.[p.nameKey as keyof typeof t.products] || p.nameKey || p.name || '').toLowerCase();
     const translatedNameTa = (p.name_ta || '').toLowerCase();
     const translatedCatName = (p.category_name || '').toLowerCase();
-    const desc = (p.description || '').toLowerCase();
-    const descTa = (p.description_ta || '').toLowerCase();
+    const desc = String(p.description || '').toLowerCase();
+    const descTa = String(p.description_ta || '').toLowerCase();
     
-    const searchLower = query.toLowerCase();
+    const searchLower = searchQuery.toLowerCase();
     
     return translatedName.includes(searchLower) || 
            translatedNameTa.includes(searchLower) ||
@@ -171,15 +171,15 @@ export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuPr
                   <input
                     ref={inputRef}
                     type="text"
-                    onChange={(e) => setQuery(e.target.value)}
-                    value={query}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    value={searchQuery}
                     placeholder="Search for products, categories, or keywords..."
                     className="w-full pl-12 pr-4 py-4 md:py-5 bg-white border border-gray-200 rounded-2xl text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all font-medium placeholder:text-gray-400"
                   />
-                  {query && (
+                  {searchQuery && (
                     <button 
                       type="button" 
-                      onClick={() => setQuery('')}
+                      onClick={() => setSearchQuery('')}
                       className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-gray-600 bg-gray-100 rounded-full transition-all"
                     >
                       <X className="w-3.5 h-3.5" />
@@ -203,12 +203,12 @@ export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuPr
                     <Loader2 className="w-8 h-8 animate-spin mb-4" />
                     <p className="text-sm font-medium">Loading catalog...</p>
                   </div>
-                ) : query.trim() ? (
+                ) : searchQuery.trim() ? (
                   /* --- Search Results State --- */
                   <div className="animate-in fade-in duration-300">
                     <div className="flex items-center justify-between mb-6">
                       <h3 className="text-lg font-serif text-primary">
-                        Search Results for "{query}"
+                        Search Results for "{searchQuery}"
                       </h3>
                       <span className="text-sm text-secondary font-medium px-3 py-1 bg-gray-100 rounded-full">
                         {filteredProducts.length} results
@@ -251,7 +251,7 @@ export default function SearchMenu({ isOpen, onClose, onNavigate }: SearchMenuPr
                           Try searching for different keywords, checking your spelling, or browsing our categories.
                         </p>
                         <button 
-                          onClick={() => setQuery('')}
+                          onClick={() => setSearchQuery('')}
                           className="mt-6 px-6 py-2.5 bg-primary text-white rounded-xl text-sm font-bold hover:bg-primary/90 transition-all shadow-md"
                         >
                           Clear Search
