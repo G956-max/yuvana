@@ -20,6 +20,22 @@ export default function Profile({ onNavigate }: ProfileProps) {
   const { user, logout } = useAuth();
   const [activeTab, setActiveTab] = useState<'profile' | 'orders' | 'wishlist' | 'settings'>('profile');
 
+  // Profile Form State
+  const defaultProfile = JSON.parse(localStorage.getItem('yuvana_user_profile') || '{}');
+  const [profileData, setProfileData] = useState({
+    name: defaultProfile.name || '',
+    phone: defaultProfile.phone || '',
+    location: defaultProfile.location || ''
+  });
+  
+  const [editForm, setEditForm] = useState(profileData);
+
+  const handleSaveProfile = () => {
+    setProfileData(editForm);
+    localStorage.setItem('yuvana_user_profile', JSON.stringify(editForm));
+    setActiveTab('profile');
+  };
+
   const handleLogout = async () => {
     await logout();
     onNavigate('home');
@@ -73,7 +89,7 @@ export default function Profile({ onNavigate }: ProfileProps) {
                 </div>
                 <div className="overflow-hidden">
                   <h3 className="font-serif text-primary text-lg truncate">
-                    {user?.username || user?.email?.split('@')[0] || t.profile.guestUser || 'Guest User'}
+                    {profileData.name || user?.username || user?.email?.split('@')[0] || t.profile.guestUser || 'Guest User'}
                   </h3>
                   <p className="text-xs text-secondary font-light truncate">{user?.email || (user?.username ? 'Administrator' : t.profile.notLoggedIn || 'Not logged in')}</p>
                 </div>
@@ -145,7 +161,7 @@ export default function Profile({ onNavigate }: ProfileProps) {
                       </div>
                       <div className="overflow-hidden">
                         <p className="text-xs text-secondary/60 uppercase tracking-wider mb-1">{t.profile.fullName}</p>
-                        <p className="text-primary font-medium truncate">{user?.username || user?.email?.split('@')[0] || '—'}</p>
+                        <p className="text-primary font-medium truncate">{profileData.name || user?.username || user?.email?.split('@')[0] || '—'}</p>
                       </div>
                     </div>
                     
@@ -165,7 +181,7 @@ export default function Profile({ onNavigate }: ProfileProps) {
                       </div>
                       <div>
                         <p className="text-xs text-secondary/60 uppercase tracking-wider mb-1">{t.profile.phone}</p>
-                        <p className="text-primary font-medium">+1 (555) 123-4567</p>
+                        <p className="text-primary font-medium">{profileData.phone || '—'}</p>
                       </div>
                     </div>
 
@@ -175,7 +191,7 @@ export default function Profile({ onNavigate }: ProfileProps) {
                       </div>
                       <div>
                         <p className="text-xs text-secondary/60 uppercase tracking-wider mb-1">{t.profile.location}</p>
-                        <p className="text-primary font-medium">New York, USA</p>
+                        <p className="text-primary font-medium">{profileData.location || '—'}</p>
                       </div>
                     </div>
                   </div>
@@ -317,7 +333,9 @@ export default function Profile({ onNavigate }: ProfileProps) {
                           <label className="block text-xs font-medium text-secondary/70 mb-1.5 ml-1">{t.profile.name}</label>
                           <input 
                             type="text" 
-                            defaultValue={user?.email?.split('@')[0] || 'User'}
+                            value={editForm.name}
+                            onChange={(e) => setEditForm({...editForm, name: e.target.value})}
+                            placeholder={user?.username || user?.email?.split('@')[0] || 'Enter your name'}
                             className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/30 focus:border-secondary/30 transition-all text-sm"
                           />
                         </div>
@@ -334,11 +352,25 @@ export default function Profile({ onNavigate }: ProfileProps) {
                           <label className="block text-xs font-medium text-secondary/70 mb-1.5 ml-1">{t.profile.phone}</label>
                           <input 
                             type="tel" 
-                            defaultValue="+1 (555) 123-4567"
+                            value={editForm.phone}
+                            onChange={(e) => setEditForm({...editForm, phone: e.target.value})}
+                            placeholder="Enter your phone number"
                             className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/30 focus:border-secondary/30 transition-all text-sm"
                           />
                         </div>
-                        <button className="px-6 py-3 bg-primary text-white rounded-xl text-sm font-medium hover:bg-primary/90 transition-colors">
+                        <div>
+                          <label className="block text-xs font-medium text-secondary/70 mb-1.5 ml-1">{t.profile.location}</label>
+                          <textarea 
+                            value={editForm.location}
+                            onChange={(e) => setEditForm({...editForm, location: e.target.value})}
+                            placeholder="Enter your delivery address / location"
+                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/30 focus:border-secondary/30 transition-all text-sm min-h-[80px]"
+                          />
+                        </div>
+                        <button 
+                          onClick={handleSaveProfile}
+                          className="px-6 py-3 bg-primary text-white rounded-xl text-sm font-medium hover:bg-primary/90 transition-colors"
+                        >
                           {t.profile.saveChanges}
                         </button>
                       </div>
