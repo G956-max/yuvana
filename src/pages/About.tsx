@@ -194,25 +194,25 @@ export default function About({ onNavigate }: AboutProps) {
               whileHover={{ scale: 1.02 }}
               className="md:col-span-2 aspect-[16/9] rounded-3xl overflow-hidden shadow-lg"
             >
-              <img src="https://images.unsplash.com/photo-1502337580314-9b68974e285e?auto=format&fit=crop&q=80&w=1200" alt="Nature" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&w=1200" alt="Nature" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </motion.div>
             <motion.div 
               whileHover={{ scale: 1.02 }}
               className="aspect-square rounded-3xl overflow-hidden shadow-lg"
             >
-              <img src="https://images.unsplash.com/photo-1615485245453-4f70ac6329ca?auto=format&fit=crop&q=80&w=800" alt="Herbs" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src="https://images.unsplash.com/photo-1596431940984-7e795c65fbcd?auto=format&fit=crop&q=80&w=800" alt="Herbs" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </motion.div>
             <motion.div 
               whileHover={{ scale: 1.02 }}
               className="aspect-square rounded-3xl overflow-hidden shadow-lg"
             >
-              <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=800" alt="Production" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src="https://images.unsplash.com/photo-1608286022629-cda998bf1b30?auto=format&fit=crop&q=80&w=800" alt="Production" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </motion.div>
             <motion.div 
               whileHover={{ scale: 1.02 }}
               className="md:col-span-2 aspect-[16/9] rounded-3xl overflow-hidden shadow-lg"
             >
-              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1200" alt="Wellness" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1200" alt="Wellness" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </motion.div>
           </div>
         </div>
