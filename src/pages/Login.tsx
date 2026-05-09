@@ -148,7 +148,7 @@ export default function Login({ onLogin }: LoginProps) {
             {isLoginMode ? t.login.welcome : 'Create Account'}
           </h1>
           <p className="text-secondary font-light">
-            {isLoginMode ? t.login.subtitle : 'Join Ayurveda Editions'}
+            {isLoginMode ? t.login.subtitle : 'Join Yuvana'}
           </p>
         </div>
 

@@ -59,7 +59,7 @@ export const translations = {
       heroTitle: 'About Our Brand',
       heroDesc: 'Bridging the gap between ancient Ayurvedic wisdom and modern holistic wellness.',
       whoWeAre: 'Who We Are',
-      whoWeAreP1: 'Founded on the principles of purity and authenticity, Ayurveda Editions is more than just a wellness brand. We are a collective of herbalists, researchers, and practitioners dedicated to preserving the sacred knowledge of Ayurveda.',
+      whoWeAreP1: 'Founded on the principles of purity and authenticity, Yuvana is more than just a wellness brand. We are a collective of herbalists, researchers, and practitioners dedicated to preserving the sacred knowledge of Ayurveda.',
       whoWeAreP2: 'Our journey began in the foothills of the Himalayas, where we witnessed the incredible power of native botanicals. Today, we bring those potent, time-tested formulas to your modern doorstep, ensuring that every drop and every tablet is a testament to nature\'s healing touch.',
       mission: 'Our Mission',
       missionDesc: 'To empower individuals on their journey to holistic health by providing authentic, high-potency Ayurvedic solutions that are ethically sourced and scientifically validated.',
@@ -74,7 +74,7 @@ export const translations = {
       contactUs: 'Contact Us'
     },
     footer: {
-      brand: 'AYURVEDA EDITIONS',
+      brand: 'YUVANA',
       rights: 'All Rights Reserved.',
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',

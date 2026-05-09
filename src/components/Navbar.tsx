@@ -40,7 +40,7 @@ export default function Navbar({ onNavigate, currentPage }: NavbarProps) {
           className="text-base md:text-xl font-serif tracking-[0.15em] md:tracking-[0.2em] text-primary font-bold whitespace-nowrap cursor-pointer transition-all hover:opacity-80"
           onClick={() => { onNavigate('home'); setIsMenuOpen(false); }}
         >
-          AYURVEDA EDITIONS
+          YUVANA
         </div>
         
         {/* Center: Menu items (Perfect Center with 3D animation) */}

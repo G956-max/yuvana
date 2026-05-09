@@ -163,7 +163,7 @@ export default function Home({ onNavigate }: HomeProps) {
                 >
                   <div>
                     <span className="text-[10px] md:text-sm font-bold tracking-[0.3em] text-secondary uppercase mb-2 block">
-                      Ayurveda Editions Premium
+                      Yuvana Premium
                     </span>
                     <h1 className="text-3xl md:text-6xl font-serif text-primary leading-tight">
                       {language === 'ta' && banners[currentBannerIndex].title_ta ? banners[currentBannerIndex].title_ta : banners[currentBannerIndex].title}
