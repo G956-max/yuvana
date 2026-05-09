@@ -43,6 +43,7 @@ export default function ProductPage({ onNavigate }: ProductPageProps) {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [sortOption, setSortOption] = useState('Popularity');
   const { t, language } = useLanguage();
   const { addToCart } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
@@ -92,7 +93,7 @@ export default function ProductPage({ onNavigate }: ProductPageProps) {
   }, []);
 
   const filteredProducts = useMemo(() => {
-    return products.filter(product => {
+    let result = products.filter(product => {
       // product.category is the ID (ForeignKey), ensure it's not null before string check
       const productCatId = product.category ? product.category.toString() : '';
       const selectedCatId = selectedCategory ? selectedCategory.toString() : 'all';
@@ -108,7 +109,17 @@ export default function ProductPage({ onNavigate }: ProductPageProps) {
                             
       return matchesCategory && matchesSearch;
     });
-  }, [selectedCategory, searchQuery, t, products]);
+
+    if (sortOption === t.products.priceLowHigh) {
+      result.sort((a, b) => Number(a.price) - Number(b.price));
+    } else if (sortOption === t.products.priceHighLow) {
+      result.sort((a, b) => Number(b.price) - Number(a.price));
+    } else if (sortOption === t.products.newestFirst) {
+      result.reverse(); 
+    }
+    
+    return result;
+  }, [selectedCategory, searchQuery, sortOption, t, products]);
 
   return (
     <div style={{ display: 'block', margin: 0, padding: 0, minHeight: '100vh', backgroundColor: '#f1f3f6' }}>
@@ -175,13 +186,17 @@ export default function ProductPage({ onNavigate }: ProductPageProps) {
             }
             <span className="ml-2 text-xs md:text-sm font-sans text-secondary font-normal">({filteredProducts.length} {t.products.items})</span>
           </h2>
-          <div className="flex items-center gap-2 text-xs md:text-sm text-secondary">
+          <div className="flex items-center gap-1 text-xs md:text-sm text-secondary">
             <span>{t.products.sortBy}:</span>
-            <select className="bg-transparent border-none focus:ring-0 font-bold text-primary cursor-pointer p-0">
-              <option>{t.products.popularity}</option>
-              <option>{t.products.priceLowHigh}</option>
-              <option>{t.products.priceHighLow}</option>
-              <option>{t.products.newestFirst}</option>
+            <select 
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+              className="bg-transparent border-none focus:ring-0 font-bold text-primary cursor-pointer py-0 pl-1 pr-6"
+            >
+              <option value={t.products.popularity}>{t.products.popularity}</option>
+              <option value={t.products.priceLowHigh}>{t.products.priceLowHigh}</option>
+              <option value={t.products.priceHighLow}>{t.products.priceHighLow}</option>
+              <option value={t.products.newestFirst}>{t.products.newestFirst}</option>
             </select>
           </div>
         </div>
